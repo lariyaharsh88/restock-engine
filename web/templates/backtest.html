@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Backtest · ReStock{% endblock %}
+{% block body %}
+<h1>Does it beat the spreadsheet?</h1>
+<p>Each policy replays the same simulated stores (120 SKUs, 365 days, first 90 days warm-up, 5 random seeds) with the same demand and lead-time draws. Policies only see what a shop sees: daily sales with an empty-shelf flag, stock, open orders. Numbers are means over seeds. Reproduce with <code>python scripts/run_backtest.py</code>.</p>
+{% for name, run in runs.items() %}
+<h2>{{ 'Unconstrained cash' if name == 'unconstrained' else 'Weekly cash capped at 80% of the engine\'s unconstrained spend' }}</h2>
+<table class="bt">
+  <tr><th>Policy</th><th>Fill rate</th><th>SKU-days out of stock</th><th>Avg inventory</th><th>Turns / yr</th><th>Waste (% of purchases)</th><th>Lost margin</th><th>GMROI</th></tr>
+  {% for pol, s in run.mean.items() %}
+  <tr class="{{ 'engine' if pol == 'engine' }}">
+    <td>{{ {'gut_feel': 'Gut feel (order 2 weeks when low)', 'min_max': 'Min–max spreadsheet (10 / 30 days)', 'engine': 'ReStock engine'}[pol] }}</td>
+    <td>{{ s.fill_rate|pct }}</td><td>{{ s.stockout_sku_days_pct|pct }}</td><td>{{ s.avg_inventory_value|inr }}</td>
+    <td>{{ '%.1f'|format(s.inventory_turns_annualised) }}</td><td>{{ s.waste_pct_of_purchases|pct }}</td><td>{{ s.lost_margin|inr }}</td><td>{{ '%.2f'|format(s.gmroi) }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endfor %}
+{% if forecast_eval %}
+<h2>Forecast accuracy (7-day horizon, WAPE, lower is better)</h2>
+<table class="bt"><tr><th>Method</th><th>WAPE</th></tr>
+{% for k, v in forecast_eval.items() %}<tr class="{{ 'engine' if k == 'engine' }}"><td>{{ {'engine': 'Engine (day-of-week × EWMA, censoring-aware)', 'avg_28d': '28-day average', 'same_week_last': 'Same as last week'}[k] }}</td><td>{{ '%.1f'|format(v * 100) }}%</td></tr>{% endfor %}
+</table>
+{% endif %}
+<p class="muted">Simulated stores, not customer data. The case study in <code>docs/CASE_STUDY.md</code> says exactly what these numbers can and cannot claim.</p>
+{% endblock %}

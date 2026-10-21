@@ -1,0 +1,5 @@
+supplier_id,name,lead_time_days,lead_time_sd_days,review_period_days,min_order_value
+S1,Metro distributor,2,0.5,3,0.0
+S2,FMCG stockist,4,1.0,7,0.0
+S3,Regional wholesaler,7,2.0,7,5000
+S4,Dairy van,1,0.0,1,0.0

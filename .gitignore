@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+evals/results/run_*.log
+evals/results/sweep.log

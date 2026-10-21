@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}ReStock{% endblock %}</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/">ReStock <span>explainable replenishment</span></a>
+  <nav>
+    <a href="/">Today</a>
+    <a href="/orders">Order list</a>
+    <a href="/backtest">Backtest</a>
+    <a href="/upload">Your data</a>
+  </nav>
+</header>
+{% if ds.is_sample %}
+<div class="banner">You are looking at a <strong>simulated sample store</strong> ({{ ds.products|length }} SKUs, {{ ds.suppliers|length }} suppliers, as of {{ today }}). <a href="/upload">Upload your own four CSVs</a> to see real recommendations.</div>
+{% else %}
+<div class="banner ok">{{ ds.label }}: {{ ds.products|length }} SKUs, planning for {{ today }}. <form method="post" action="/reset" class="inline"><button class="link">Back to sample</button></form></div>
+{% endif %}
+<main>{% block body %}{% endblock %}</main>
+<footer>Pure rules, no API keys. Every number on a line is reproducible from the four CSVs. <a href="/api/orders">JSON</a></footer>
+</body>
+</html>

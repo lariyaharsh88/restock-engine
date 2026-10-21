@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>What to order today</h1>
+<div class="kpis">
+  <div class="kpi"><b>{{ totals.lines }}</b><span>order lines</span></div>
+  <div class="kpi"><b>{{ totals.cost|inr }}</b><span>purchase value</span></div>
+  <div class="kpi"><b>{{ totals.margin_at_stake|inr }}</b><span>margin at risk if you skip them</span></div>
+  <div class="kpi"><b>{{ totals.ok }}</b><span>SKUs fine for now</span></div>
+  <div class="kpi"><b>{{ totals.capped }}</b><span>lines trimmed (expiry / cash / cover)</span></div>
+  <div class="kpi"><b>{{ totals.deferred }}</b><span>deferred</span></div>
+</div>
+
+<div class="cols">
+<section>
+  <h2>By supplier</h2>
+  <table>
+    <tr><th>Supplier</th><th>Lines</th><th>Value</th><th></th></tr>
+    {% for sid, d in by_sup.items() %}
+    <tr><td>{{ d.name }}</td><td>{{ d.lines }}</td><td>{{ d.cost|inr }}</td><td><a href="/orders?supplier={{ sid }}">open</a></td></tr>
+    {% endfor %}
+  </table>
+  {% if ds.issues %}
+  <h2>Data checks</h2>
+  <ul class="issues">{% for i in ds.issues[:10] %}<li>{{ i }}</li>{% endfor %}{% if ds.issues|length > 10 %}<li>and {{ ds.issues|length - 10 }} more</li>{% endif %}</ul>
+  {% endif %}
+</section>
+<section>
+  <h2>Most likely to run out before the next delivery</h2>
+  <table>
+    <tr><th>SKU</th><th>Risk</th><th>Days of cover</th><th>Margin at stake</th><th>Action</th></tr>
+    {% for r in at_risk %}
+    <tr>
+      <td><a href="/sku/{{ r.sku }}">{{ ds.products[r.sku].name }}</a> <small class="cls">{{ r.abc_class }}</small></td>
+      <td class="risk-{{ 'hi' if r.stockout_risk > 0.75 else 'mid' }}">{{ r.stockout_risk|pct }}</td>
+      <td>{{ '%.1f'|format(r.days_of_cover) if r.days_of_cover < 999 else 'n/a' }}</td>
+      <td>{{ r.expected_lost_margin|inr }}</td>
+      <td>{% if r.is_order %}order {{ r.qty }}{% else %}{{ r.status }}{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</section>
+</div>
+{% endblock %}

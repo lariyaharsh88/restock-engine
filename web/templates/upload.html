@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Your data · ReStock{% endblock %}
+{% block body %}
+<h1>Bring your own store</h1>
+<p>Four CSV exports, nothing else. Column names are in <code>data/sample/</code>; dates are YYYY-MM-DD. The <code>stockout</code> column in sales is optional but matters: a day with an empty shelf is not a day with zero demand.</p>
+{% if error %}<div class="banner err">{{ error }}</div>{% endif %}
+<form method="post" action="/upload" enctype="multipart/form-data" class="upload">
+  <label>Store name <input name="label" value="My store"></label>
+  <label>products.csv <input type="file" name="products" accept=".csv" required></label>
+  <label>suppliers.csv <input type="file" name="suppliers" accept=".csv" required></label>
+  <label>sales.csv <input type="file" name="sales" accept=".csv" required></label>
+  <label>stock.csv <input type="file" name="stock" accept=".csv" required></label>
+  <button>Plan my orders</button>
+</form>
+<p class="muted">Files stay in this process's memory and are gone on restart. No account, no upload to anyone else.</p>
+{% endblock %}

@@ -1,0 +1,121 @@
+sku,name,category,unit_cost,sell_price,supplier_id,pack_size,shelf_life_days
+SKU001,Staples 1,staples,67.13,76.77,S3,1,
+SKU002,Staples 2,staples,236.53,258.31,S1,24,
+SKU003,Staples 3,staples,81.65,89.41,S2,1,
+SKU004,Staples 4,staples,233.17,264.0,S2,6,
+SKU005,Staples 5,staples,337.27,394.99,S2,12,
+SKU006,Staples 6,staples,163.98,191.61,S1,12,
+SKU007,Staples 7,staples,79.48,88.29,S1,1,
+SKU008,Staples 8,staples,71.62,79.92,S1,1,
+SKU009,Staples 9,staples,190.67,215.17,S1,1,
+SKU010,Staples 10,staples,260.02,284.6,S2,6,
+SKU011,Staples 11,staples,298.03,329.63,S2,24,
+SKU012,Staples 12,staples,88.11,100.55,S3,24,
+SKU013,Staples 13,staples,165.34,193.67,S1,1,
+SKU014,Staples 14,staples,292.74,320.7,S1,1,
+SKU015,Staples 15,staples,332.24,386.99,S2,1,
+SKU016,Staples 16,staples,211.19,239.68,S3,1,
+SKU017,Staples 17,staples,217.05,244.83,S2,1,
+SKU018,Staples 18,staples,312.56,365.89,S1,6,
+SKU019,Staples 19,staples,166.29,186.74,S1,6,
+SKU020,Staples 20,staples,97.59,113.65,S1,1,
+SKU021,Staples 21,staples,42.72,47.37,S3,24,
+SKU022,Staples 22,staples,110.66,121.96,S2,6,
+SKU023,Staples 23,staples,82.27,92.78,S1,12,
+SKU024,Staples 24,staples,58.89,64.36,S1,6,
+SKU025,Staples 25,staples,222.45,246.38,S1,6,
+SKU026,Staples 26,staples,16.82,18.72,S1,1,
+SKU027,Staples 27,staples,176.26,202.38,S1,24,
+SKU028,Staples 28,staples,257.75,302.23,S3,12,
+SKU029,Staples 29,staples,296.82,328.94,S3,1,
+SKU030,Staples 30,staples,38.37,42.18,S2,6,
+SKU031,Snacks 31,snacks,41.65,50.88,S2,6,164
+SKU032,Snacks 32,snacks,52.17,62.66,S3,12,122
+SKU033,Snacks 33,snacks,302.29,392.12,S3,1,85
+SKU034,Snacks 34,snacks,179.01,213.37,S2,6,114
+SKU035,Snacks 35,snacks,193.1,231.17,S1,6,154
+SKU036,Snacks 36,snacks,223.75,272.5,S3,6,117
+SKU037,Snacks 37,snacks,169.81,205.53,S1,24,94
+SKU038,Snacks 38,snacks,158.75,199.42,S3,12,168
+SKU039,Snacks 39,snacks,331.63,431.37,S1,12,73
+SKU040,Snacks 40,snacks,231.2,264.19,S3,6,140
+SKU041,Snacks 41,snacks,188.59,249.68,S2,1,90
+SKU042,Snacks 42,snacks,370.66,435.81,S2,1,151
+SKU043,Snacks 43,snacks,50.73,63.5,S1,24,88
+SKU044,Snacks 44,snacks,137.06,160.14,S2,24,64
+SKU045,Snacks 45,snacks,220.28,267.99,S1,6,174
+SKU046,Snacks 46,snacks,360.23,430.94,S1,6,138
+SKU047,Snacks 47,snacks,194.27,257.1,S2,12,176
+SKU048,Snacks 48,snacks,149.85,192.53,S2,1,110
+SKU049,Snacks 49,snacks,45.8,56.18,S1,12,77
+SKU050,Snacks 50,snacks,104.99,123.79,S1,1,176
+SKU051,Snacks 51,snacks,329.09,426.99,S1,6,97
+SKU052,Snacks 52,snacks,251.02,294.73,S1,6,65
+SKU053,Snacks 53,snacks,168.0,216.34,S1,24,128
+SKU054,Snacks 54,snacks,260.64,314.33,S1,12,60
+SKU055,Beverages 55,beverages,364.64,409.2,S3,24,219
+SKU056,Beverages 56,beverages,371.06,430.86,S2,24,131
+SKU057,Beverages 57,beverages,104.85,126.71,S1,1,233
+SKU058,Beverages 58,beverages,394.57,462.31,S2,12,207
+SKU059,Beverages 59,beverages,369.47,425.35,S1,24,219
+SKU060,Beverages 60,beverages,383.0,473.78,S2,1,146
+SKU061,Beverages 61,beverages,257.54,295.28,S3,6,133
+SKU062,Beverages 62,beverages,343.79,416.11,S1,6,184
+SKU063,Beverages 63,beverages,122.06,145.75,S2,12,102
+SKU064,Beverages 64,beverages,13.53,16.5,S2,1,106
+SKU065,Beverages 65,beverages,216.36,251.76,S1,1,116
+SKU066,Beverages 66,beverages,253.38,316.49,S2,12,91
+SKU067,Beverages 67,beverages,370.67,460.05,S2,6,158
+SKU068,Beverages 68,beverages,110.06,125.58,S3,1,173
+SKU069,Beverages 69,beverages,252.07,282.52,S1,1,96
+SKU070,Beverages 70,beverages,239.47,277.27,S3,24,106
+SKU071,Beverages 71,beverages,120.65,135.56,S2,1,142
+SKU072,Beverages 72,beverages,26.86,31.85,S2,1,163
+SKU073,Dairy Bakery 73,dairy_bakery,383.22,446.23,S4,12,5
+SKU074,Dairy Bakery 74,dairy_bakery,165.3,190.34,S4,12,4
+SKU075,Dairy Bakery 75,dairy_bakery,240.88,285.11,S4,12,3
+SKU076,Dairy Bakery 76,dairy_bakery,207.02,235.62,S4,12,5
+SKU077,Dairy Bakery 77,dairy_bakery,84.61,95.29,S4,1,7
+SKU078,Dairy Bakery 78,dairy_bakery,10.16,11.54,S4,6,9
+SKU079,Dairy Bakery 79,dairy_bakery,254.28,285.01,S4,6,6
+SKU080,Dairy Bakery 80,dairy_bakery,12.17,14.6,S4,1,3
+SKU081,Dairy Bakery 81,dairy_bakery,276.27,318.06,S4,1,8
+SKU082,Dairy Bakery 82,dairy_bakery,388.83,473.92,S4,6,10
+SKU083,Dairy Bakery 83,dairy_bakery,313.7,363.73,S4,1,7
+SKU084,Dairy Bakery 84,dairy_bakery,359.63,405.09,S4,6,9
+SKU085,Dairy Bakery 85,dairy_bakery,47.79,53.78,S4,1,5
+SKU086,Dairy Bakery 86,dairy_bakery,316.92,380.5,S4,1,10
+SKU087,Dairy Bakery 87,dairy_bakery,197.87,239.1,S4,12,10
+SKU088,Dairy Bakery 88,dairy_bakery,246.99,292.16,S4,6,4
+SKU089,Dairy Bakery 89,dairy_bakery,119.39,136.81,S4,6,3
+SKU090,Dairy Bakery 90,dairy_bakery,23.7,28.14,S4,6,3
+SKU091,Personal Care 91,personal_care,311.62,468.88,S1,1,
+SKU092,Personal Care 92,personal_care,331.3,481.22,S2,12,
+SKU093,Personal Care 93,personal_care,270.39,414.54,S1,1,
+SKU094,Personal Care 94,personal_care,254.42,363.75,S2,12,
+SKU095,Personal Care 95,personal_care,246.71,321.98,S2,24,
+SKU096,Personal Care 96,personal_care,67.24,99.11,S1,24,
+SKU097,Personal Care 97,personal_care,357.12,548.39,S1,1,
+SKU098,Personal Care 98,personal_care,163.03,233.04,S2,6,
+SKU099,Personal Care 99,personal_care,282.82,372.96,S1,24,
+SKU100,Personal Care 100,personal_care,16.06,19.72,S2,24,
+SKU101,Personal Care 101,personal_care,27.99,38.59,S2,12,
+SKU102,Personal Care 102,personal_care,108.3,142.47,S3,24,
+SKU103,Personal Care 103,personal_care,239.85,347.03,S2,1,
+SKU104,Personal Care 104,personal_care,38.49,53.85,S3,6,
+SKU105,Personal Care 105,personal_care,180.08,226.63,S1,12,
+SKU106,Personal Care 106,personal_care,370.69,511.43,S1,6,
+SKU107,Personal Care 107,personal_care,123.06,188.27,S1,1,
+SKU108,Personal Care 108,personal_care,243.46,358.52,S2,24,
+SKU109,Household 109,household,349.83,431.86,S2,1,
+SKU110,Household 110,household,133.82,180.03,S2,12,
+SKU111,Household 111,household,79.5,95.26,S2,6,
+SKU112,Household 112,household,204.3,252.83,S1,1,
+SKU113,Household 113,household,178.75,254.33,S3,6,
+SKU114,Household 114,household,270.3,331.18,S3,12,
+SKU115,Household 115,household,380.74,471.87,S1,6,
+SKU116,Household 116,household,262.94,320.73,S2,6,
+SKU117,Household 117,household,395.1,490.4,S1,1,
+SKU118,Household 118,household,63.01,76.88,S3,24,
+SKU119,Household 119,household,168.88,220.04,S2,1,
+SKU120,Household 120,household,10.65,14.43,S1,12,

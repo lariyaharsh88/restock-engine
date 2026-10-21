@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Order list · ReStock{% endblock %}
+{% block body %}
+<h1>Order list <small>{{ totals.lines }} lines · {{ totals.cost|inr }}</small></h1>
+<div class="toolbar">
+  <div class="tabs">
+    <a class="{{ 'on' if status == 'order' }}" href="/orders?status=order&supplier={{ supplier }}">To order</a>
+    <a class="{{ 'on' if status == 'ok' }}" href="/orders?status=ok&supplier={{ supplier }}">Fine for now</a>
+    <a class="{{ 'on' if status == 'deferred' }}" href="/orders?status=deferred&supplier={{ supplier }}">Deferred</a>
+    <a class="{{ 'on' if status == 'all' }}" href="/orders?status=all&supplier={{ supplier }}">All</a>
+  </div>
+  <form method="post" action="/budget" class="budget">
+    <label>Cash available this cycle (₹)</label>
+    <input name="budget" placeholder="unlimited" value="{{ '%.0f'|format(ds.budget) if ds.budget else '' }}">
+    <button>Re-plan</button>
+  </form>
+</div>
+<table class="orders">
+  <tr><th>SKU</th><th>Class</th><th>Have</th><th>Target</th><th>Order</th><th>Cost</th><th>Risk</th><th>Why</th></tr>
+  {% for r in recs %}
+  <tr class="{{ r.status }}">
+    <td><a href="/sku/{{ r.sku }}">{{ ds.products[r.sku].name }}</a><br><small>{{ r.sku }} · {{ ds.suppliers[ds.products[r.sku].supplier_id].name }}</small></td>
+    <td><span class="cls">{{ r.abc_class }}</span></td>
+    <td>{{ r.inventory_position }}</td>
+    <td>{{ '%.0f'|format(r.order_up_to) }}</td>
+    <td class="qty">{% if r.is_order %}<b>{{ r.qty }}</b>{% if ds.products[r.sku].pack_size > 1 %}<br><small>{{ r.qty // ds.products[r.sku].pack_size }} × {{ ds.products[r.sku].pack_size }}</small>{% endif %}{% else %}<span class="muted">{{ r.status }}</span>{% endif %}</td>
+    <td>{{ r.line_cost|inr }}</td>
+    <td class="risk-{{ 'hi' if r.stockout_risk > 0.75 else ('mid' if r.stockout_risk > 0.3 else 'lo') }}">{{ r.stockout_risk|pct }}</td>
+    <td class="why">{{ r.explanation }}
+      {% for c in r.caps %}<span class="cap cap-{{ c.name }}">{{ c.name.replace('_',' ') }}</span>{% endfor %}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

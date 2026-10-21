@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{ p.name }} · ReStock{% endblock %}
+{% block body %}
+<p><a href="/orders">← order list</a></p>
+<h1>{{ p.name }} <small>{{ p.sku }} · {{ p.category }} · class {{ r.abc_class }}</small></h1>
+<div class="cols">
+<section>
+  <div class="decision {{ r.status }}">
+    {% if r.is_order %}<b>Order {{ r.qty }}</b>{% if p.pack_size > 1 %} ({{ r.qty // p.pack_size }} packs of {{ p.pack_size }}){% endif %} from {{ s.name }} · {{ r.line_cost|inr }}
+    {% elif r.status == 'deferred' %}<b>Deferred</b>{% else %}<b>No order needed</b>{% endif %}
+  </div>
+  <p class="why">{{ r.explanation }}</p>
+  <h2>Last 8 weeks and the next 2</h2>
+  {{ chart|safe }}
+  <p class="legend"><span class="sw bar"></span> sold &nbsp; <span class="sw so"></span> empty-shelf day (excluded from the forecast) &nbsp; <span class="sw fc"></span> forecast</p>
+</section>
+<section>
+  <h2>The arithmetic</h2>
+  <table class="kv">
+    <tr><td>Forecast method</td><td>{{ r.forecast.method.replace('_',' ') }} on {{ r.forecast.n_days_used }} usable days</td></tr>
+    <tr><td>Daily demand (level)</td><td>{{ '%.2f'|format(r.forecast.daily_mean) }} ± {{ '%.2f'|format(r.forecast.daily_sd) }}</td></tr>
+    <tr><td>Day-of-week index</td><td>{% for v in r.forecast.dow_index %}{{ ['Mo','Tu','We','Th','Fr','Sa','Su'][loop.index0] }} {{ '%.2f'|format(v) }}{% if not loop.last %} · {% endif %}{% endfor %}</td></tr>
+    <tr><td>Protection period</td><td>{{ r.protection_days }} days = {{ s.lead_time_days }} lead (± {{ s.lead_time_sd_days }}) + {{ s.review_period_days }} review</td></tr>
+    <tr><td>Expected demand over it</td><td>{{ '%.1f'|format(r.expected_demand) }}</td></tr>
+    <tr><td>Service level (class {{ r.abc_class }})</td><td>{{ r.service_level|pct }}</td></tr>
+    <tr><td>Safety stock</td><td>{{ '%.1f'|format(r.safety_stock) }}</td></tr>
+    <tr><td>Order-up-to level</td><td>{{ '%.1f'|format(r.order_up_to) }}</td></tr>
+    <tr><td>Inventory position</td><td>{{ r.inventory_position }} (on hand {{ ds.stock[p.sku].on_hand if p.sku in ds.stock else 0 }} + on order {{ ds.stock[p.sku].on_order if p.sku in ds.stock else 0 }})</td></tr>
+    <tr><td>Days of cover now</td><td>{{ '%.1f'|format(r.days_of_cover) if r.days_of_cover < 999 else 'n/a' }}</td></tr>
+    <tr><td>Stockout risk if not ordered</td><td>{{ r.stockout_risk|pct }} · expected shortfall {{ '%.1f'|format(r.expected_shortfall_units) }} units · {{ r.expected_lost_margin|inr }} margin</td></tr>
+    <tr><td>Unit economics</td><td>cost {{ p.unit_cost|inr }} · price {{ p.sell_price|inr }} · pack {{ p.pack_size }}{% if p.shelf_life_days %} · shelf life {{ p.shelf_life_days }} d{% endif %}</td></tr>
+  </table>
+  {% if r.caps %}
+  <h2>Adjustments applied</h2>
+  <table><tr><th>Step</th><th>From</th><th>To</th><th>Reason</th></tr>
+  {% for c in r.caps %}<tr><td><span class="cap cap-{{ c.name }}">{{ c.name.replace('_',' ') }}</span></td><td>{{ c.qty_before }}</td><td>{{ c.qty_after }}</td><td>{{ c.reason }}</td></tr>{% endfor %}
+  </table>
+  {% endif %}
+  <h2>Last 14 days</h2>
+  <table><tr><th>Date</th><th>Sold</th><th></th></tr>
+  {% for d, q, so in history %}<tr><td>{{ d }}</td><td>{{ q }}</td><td>{% if so %}<small class="muted">empty shelf</small>{% endif %}</td></tr>{% endfor %}
+  </table>
+</section>
+</div>
+{% endblock %}
