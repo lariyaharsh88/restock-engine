@@ -1,0 +1,12 @@
+# One-click deploy on Render (free web service). Import this repo at https://dashboard.render.com/select-repo
+services:
+  - type: web
+    name: restock-engine
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn web.app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12"
